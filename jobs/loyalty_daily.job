@@ -1,0 +1,8 @@
+[Build Time to Repeat Table]
+target="mysql"
+command="""/home/deploy/analytics_scripts/job_scripts/loyalty_daily/bk_time_to_repeat_3_full.sql"""
+
+[Push to Vertica]
+target="shell"
+command="""/home/deploy/analytics_scripts/job_scripts/loyalty_daily/load_bk_time_to_repeat_3_2vertica.sh"""
+

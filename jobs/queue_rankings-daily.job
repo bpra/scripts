@@ -1,0 +1,3 @@
+[most popular + availability ranking - based on dress ranking]
+target="vertica"
+command="""/home/deploy/analytics_scripts/vertica/etl/queue/vertica_rank_accessories.sql"""

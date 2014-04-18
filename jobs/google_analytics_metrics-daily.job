@@ -1,0 +1,4 @@
+[Incremental load of rtrbi.google_analytics_metrics for ios app and web data]
+target="/usr/local/bin/python2.7"
+command="""/home/deploy/analytics_scripts/vertica/rtrbi/google_analytics_metrics_incremental.py"""
+

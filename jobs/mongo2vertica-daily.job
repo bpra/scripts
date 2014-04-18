@@ -1,0 +1,19 @@
+[Load and clean shortlists from mongodb]
+target="shell"
+command="""/home/deploy/analytics_scripts/vertica/etl/shortlists/export_shortlists.sh"""
+
+[import shortlists to vertica]
+target="shell"
+command="""/home/deploy/analytics_scripts/vertica/etl/shortlists/import_shortlists.sh"""
+
+[import booker virtual closet]
+target="python27"
+command="""/home/deploy/analytics_scripts/includes/python_includes/rtrbi/mongo2vertica.py"""
+
+[Load and clean reviews from mongodb]
+target="shell"
+command="""/home/deploy/analytics_scripts/vertica/etl/review/export_reviews.sh"""
+
+[import reviews to vertica]
+target="shell"
+command="""/home/deploy/analytics_scripts/vertica/etl/review/import_reviews.sh"""

@@ -1,0 +1,8 @@
+[Load special from mysql]
+target="shell"
+command="""/home/deploy/analytics_scripts/job_scripts/mysqlsync_daily/load_specialized_frommysql.sh"""
+
+[Load full from mysql]
+target="shell"
+command="""/home/deploy/analytics_scripts/job_scripts/mysqlsync_daily/load_full_frommysql.sh"""
+

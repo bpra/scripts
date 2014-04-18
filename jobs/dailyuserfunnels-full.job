@@ -1,0 +1,11 @@
+
+
+[Refresh order line items from mysql]
+target="shell"
+command="""/home/deploy/analytics_scripts/includes/shell_includes/load_full_table.sh  rtrbi order_line_items etl order_line_items"""
+
+
+[Incremental load of daily user funnels]
+target="vertica"
+command="""/home/deploy/analytics_scripts/vertica/rtrbi/daily_user_funnels_full.sql"""
+

@@ -1,0 +1,3 @@
+[Create Revenue Allocation for SKUs in Order Baskest]
+target="vertica"
+command="""/home/deploy/analytics_scripts/job_scripts/OrderBasketRevenueAllocation-weekly/order_basket_revenue_allocation.sql"""

@@ -1,0 +1,79 @@
+[Load mongo prodcut catalog]
+target="python27"
+command="""/home/deploy/analytics_scripts/job_scripts/orderwarehouse_daily/get-product-catalog.py"""
+
+
+[Create mongo products master]
+target="mysql"
+command="""/home/deploy/analytics_scripts/job_scripts/orderwarehouse_daily/mongo_products_master.sql"""
+
+
+[Create product master keys table]
+target="mysql"
+command="""/home/deploy/analytics_scripts/job_scripts/orderwarehouse_daily/products_master_keys.sql"""
+
+
+[Create cc product attributes table]
+target="mysql"
+command="""/home/deploy/analytics_scripts/job_scripts/orderwarehouse_daily/cc_products_attributes.sql"""
+
+
+[Create product master tables]
+target="mysql"
+command="""/home/deploy/analytics_scripts/job_scripts/orderwarehouse_daily/products_master_final.sql"""
+
+
+[Create order summary and other tables]
+target="mysql"
+command="""/home/deploy/analytics_scripts/job_scripts/orderwarehouse_daily/order_summaries.sql"""
+
+
+[Run Product updates]
+target="mysql"
+command="""/home/deploy/analytics_scripts/orderwarehouse/OT_DW_daily_load_script_product.sql"""
+
+
+[Create transaction detail incremental tables]
+target="mysql"
+command="""/home/deploy/analytics_scripts/orderwarehouse/OT_DW_daily_load_script_transactiondetails.sql"""
+
+
+[Copy warehouse tables over to vertica]
+target="shell"
+command="""/home/deploy/analytics_scripts/orderwarehouse/load_warehouse_tables.sh"""
+
+
+[Load transaction detail incremental tables on vertica]
+target="vertica"
+command="""/home/deploy/analytics_scripts/orderwarehouse/OT_DW_daily_apply_transactiondetails_vertica.sql"""
+
+
+[Load transaction detail incremental tables on mysql]
+target="mysql"
+command="""/home/deploy/analytics_scripts/orderwarehouse/OT_DW_daily_apply_transactiondetails_mysql.sql"""
+
+
+[Refresh order summary from mysql]
+target="shell"
+command="""/home/deploy/analytics_scripts/includes/shell_includes/load_full_table.sh rtrbi order_summary etl order_summary"""
+
+
+[Refresh uc_orders from mysql]
+target="shell"
+command="""/home/deploy/analytics_scripts/includes/shell_includes/load_full_table.sh rtr_prod0808 uc_orders etl uc_orders"""
+
+
+[Full load of the order summary table]
+target="vertica"
+command="""/home/deploy/analytics_scripts/vertica/rtrbi/order_summary_full.sql"""
+
+
+[Refresh order attributes from mysql]
+target="shell"
+command="""/home/deploy/analytics_scripts/includes/shell_includes/load_full_table.sh rtrbi order_attributes rtrbi order_attributes"""
+
+
+[new loyalty tables based in vertica]
+target="vertica"
+command="""/home/deploy/analytics_scripts/job_scripts/loyalty_daily/vertica_loyalty.sql"""
+

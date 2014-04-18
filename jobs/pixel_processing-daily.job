@@ -1,0 +1,56 @@
+[Check if file is ready for parsing]
+target="python27"
+command="""/home/deploy/analytics_scripts/stats_log/wait_for_files.py"""
+
+[Parse daily pixel log file]
+target="perl"
+command="""/home/deploy/analytics_scripts/stats_log/stats-pixel-validation-stdout.pl --data_set="daily" """
+
+[Load parsed output to vertica]
+target="shell"
+command="""/home/deploy/analytics_scripts/vertica/pixel/get_yesterday_pixel.sh"""
+
+[Incremental load of browser history]
+target="vertica"
+command="""/home/deploy/analytics_scripts/vertica/rtrbi/browser_history_incremental.sql"""
+
+[Refresh order line items from mysql]
+target="shell"
+command="""/home/deploy/analytics_scripts/includes/shell_includes/load_full_table.sh  rtrbi order_line_items etl order_line_items"""
+
+
+[Incremental load of daily user funnels]
+target="vertica"
+command="""/home/deploy/analytics_scripts/vertica/rtrbi/daily_user_funnels_incremental.sql"""
+
+[Save Recos]
+target="python27"
+command="""/home/deploy/analytics_scripts/vertica/scripts/save_recos.py"""
+
+[Create pixel map]
+target="vertica"
+command="""/home/deploy/analytics_scripts/vertica/scripts/create_pixel_map.sql"""
+
+[Create Browser Size Detail]
+target="vertica"
+command="""/home/deploy/analytics_scripts/vertica/scripts/browserSzDtl.sql"""
+
+[Create Shortlist Summary]
+target="vertica"
+command="""/home/deploy/analytics_scripts/vertica/scripts/shortlist_summary.sql"""
+
+[Update browser2user]
+target="vertica"
+command="""/home/deploy/analytics_scripts/vertica/scripts/incr_browser2user.sql"""
+
+[Exp100.0]
+target="vertica"
+command="""/home/deploy/analytics_scripts/vertica/scripts/incr_exp100.0.sql"""
+
+[Exp100.1]
+target="vertica"
+command="""/home/deploy/analytics_scripts/vertica/scripts/incr_exp100.1.sql"""
+
+[Table load for etl.user_priority_scan of fulfillments data - depends on file from javaservices01/02]
+target="shell"
+command="""/home/deploy/analytics_scripts/vertica/etl/unit_priority_scan/javaservices_fulfillment_data.sh"""
